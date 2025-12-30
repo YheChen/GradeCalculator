@@ -223,9 +223,30 @@ export default function GradeCalculator() {
     );
   };
 
+  const clearAllClasses = () => {
+    const confirmed = window.confirm(
+      "Delete all courses? This action cannot be undone."
+    );
+    if (!confirmed) {
+      return;
+    }
+
+    const defaultClass = createNewClass(0);
+    setClasses([defaultClass]);
+    setActiveTab(defaultClass.id);
+  };
+
   return (
     <div className="max-w-7xl mx-auto">
-      <div className="flex justify-end mb-4">
+      <div className="flex justify-between items-center mb-4">
+        <Button
+          variant="destructive"
+          size="sm"
+          className="bg-red-600 text-white hover:bg-red-700"
+          onClick={clearAllClasses}
+        >
+          Clear All
+        </Button>
         <Button variant="outline" size="sm" onClick={addClass}>
           <Plus className="h-4 w-4 mr-1" /> Add Class
         </Button>
